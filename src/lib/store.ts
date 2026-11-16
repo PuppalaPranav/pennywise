@@ -1,3 +1,4 @@
+import { useMemo } from 'react'
 import { create } from 'zustand'
 import { persist, createJSONStorage } from 'zustand/middleware'
 import { get, set, del } from 'idb-keyval'
@@ -61,5 +62,8 @@ export const useStore = create<State>()(
     { name: 'pennywise-v1', storage, version: 1 },
   ),
 )
-export const useCats = () => useStore((s) => [...DEFAULT_CATEGORIES, ...s.customCats])
+export const useCats = () => {
+  const custom = useStore((s) => s.customCats)
+  return useMemo(() => [...DEFAULT_CATEGORIES, ...custom], [custom])
+}
 export const INCOME_CATS = ['Salary', 'Freelancing', 'Business', 'Gifts', 'Other']
