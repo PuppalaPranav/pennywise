@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom'
+import { HashRouter, NavLink, Route, Routes } from 'react-router-dom'
 import { LayoutDashboard, ArrowLeftRight, PiggyBank, Target, Settings as Cog, Wallet } from 'lucide-react'
 import { useStore } from './lib/store'
 import Dashboard from './pages/Dashboard'
@@ -16,7 +16,7 @@ export default function App() {
   useEffect(() => { document.documentElement.classList.toggle('dark', theme === 'dark') }, [theme])
   if (!ready) return <p className="p-8 text-sm text-slate-500">Loading…</p>
   return (
-    <BrowserRouter>
+    <HashRouter>
       <aside className="fixed inset-y-0 hidden w-60 flex-col gap-1 border-r border-slate-200 bg-white p-4 dark:border-neutral-800 dark:bg-neutral-900 md:flex">
         <div className="mb-6 flex items-center gap-2 px-2 text-lg font-semibold"><Wallet className="text-emerald-600" />PennyWise</div>
         {nav.map(([to, label, Icon]) => <NavLink key={to} to={to} end={to === '/'} className={({ isActive }) => `flex items-center gap-3 rounded-xl px-3 py-2 text-sm transition ${isActive ? 'bg-emerald-50 font-medium text-emerald-700 dark:bg-emerald-950 dark:text-emerald-400' : 'text-slate-500 hover:bg-slate-100 dark:hover:bg-neutral-800'}`}><Icon size={18} />{label}</NavLink>)}
@@ -27,6 +27,6 @@ export default function App() {
       <nav className="fixed inset-x-0 bottom-0 flex justify-around border-t border-slate-200 bg-white py-2 dark:border-neutral-800 dark:bg-neutral-900 md:hidden">
         {nav.map(([to, label, Icon]) => <NavLink key={to} to={to} end={to === '/'} aria-label={label} className={({ isActive }) => `p-2 ${isActive ? 'text-emerald-600' : 'text-slate-400'}`}><Icon size={22} /></NavLink>)}
       </nav>
-    </BrowserRouter>
+    </HashRouter>
   )
 }
