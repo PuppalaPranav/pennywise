@@ -1,10 +1,42 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 @tailwind base; @tailwind components; @tailwind utilities;
-body { @apply bg-slate-50 text-slate-900 font-sans antialiased dark:bg-neutral-950 dark:text-slate-100; }
+
+body {
+  @apply text-slate-900 font-sans antialiased dark:text-slate-100;
+  min-height: 100vh;
+  background:
+    radial-gradient(55rem 40rem at 5% -10%, rgba(16,185,129,.35), transparent 60%),
+    radial-gradient(50rem 40rem at 100% 5%, rgba(99,102,241,.28), transparent 60%),
+    radial-gradient(50rem 40rem at 50% 115%, rgba(236,72,153,.20), transparent 60%),
+    #eef2f7;
+  background-attachment: fixed;
+}
+.dark body {
+  background:
+    radial-gradient(55rem 40rem at 5% -10%, rgba(16,185,129,.28), transparent 60%),
+    radial-gradient(50rem 40rem at 100% 5%, rgba(99,102,241,.25), transparent 60%),
+    radial-gradient(50rem 40rem at 50% 115%, rgba(236,72,153,.15), transparent 60%),
+    #07080c;
+  background-attachment: fixed;
+}
+
 @layer components {
-  .card { @apply rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-neutral-800 dark:bg-neutral-900; }
-  .input { @apply w-full rounded-xl border border-slate-200 bg-transparent px-3 py-2 text-sm outline-none transition focus:ring-2 focus:ring-emerald-500 dark:border-neutral-700 dark:bg-neutral-900; }
-  .btn { @apply inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-emerald-700 active:scale-95; }
-  .btn-ghost { @apply inline-flex items-center gap-1 rounded-lg px-2 py-1 text-sm text-slate-500 transition hover:bg-slate-100 dark:hover:bg-neutral-800; }
-  .bar { @apply h-2 overflow-hidden rounded-full bg-slate-100 dark:bg-neutral-800; }
+  .glass, .card {
+    background: rgba(255,255,255,.55);
+    border: 1px solid rgba(255,255,255,.7);
+    backdrop-filter: blur(24px) saturate(160%);
+    -webkit-backdrop-filter: blur(24px) saturate(160%);
+    box-shadow: 0 8px 32px rgba(15,23,42,.08), inset 0 1px 0 rgba(255,255,255,.8);
+  }
+  .dark .glass, .dark .card {
+    background: rgba(255,255,255,.06);
+    border-color: rgba(255,255,255,.12);
+    box-shadow: 0 8px 32px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.10);
+  }
+  .card { @apply rounded-3xl p-5; }
+  .input { @apply w-full rounded-xl border border-white/60 bg-white/40 px-3 py-2 text-sm outline-none backdrop-blur-md transition focus:ring-2 focus:ring-emerald-400 dark:border-white/10 dark:bg-white/5; }
+  .input option { @apply text-slate-900; }
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-500/90 px-4 py-2 text-sm font-medium text-white shadow-lg shadow-emerald-500/25 backdrop-blur transition hover:bg-emerald-500 active:scale-95; }
+  .btn-ghost { @apply inline-flex items-center gap-1 rounded-lg px-2 py-1 text-sm text-slate-500 transition hover:bg-white/40 dark:hover:bg-white/10; }
+  .bar { @apply h-2 overflow-hidden rounded-full bg-black/10 dark:bg-white/10; }
 }
