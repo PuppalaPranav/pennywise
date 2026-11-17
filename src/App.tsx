@@ -17,14 +17,14 @@ export default function App() {
   if (!ready) return <p className="p-8 text-sm text-slate-500">Loading…</p>
   return (
     <HashRouter>
-      <aside className="fixed inset-y-0 hidden w-60 flex-col gap-1 border-r border-slate-200 bg-white p-4 dark:border-neutral-800 dark:bg-neutral-900 md:flex">
+      <aside className="fixed inset-y-0 hidden w-60 flex-col gap-1 border-r p-4 glass md:flex">
         <div className="mb-6 flex items-center gap-2 px-2 text-lg font-semibold"><Wallet className="text-emerald-600" />PennyWise</div>
-        {nav.map(([to, label, Icon]) => <NavLink key={to} to={to} end={to === '/'} className={({ isActive }) => `flex items-center gap-3 rounded-xl px-3 py-2 text-sm transition ${isActive ? 'bg-emerald-50 font-medium text-emerald-700 dark:bg-emerald-950 dark:text-emerald-400' : 'text-slate-500 hover:bg-slate-100 dark:hover:bg-neutral-800'}`}><Icon size={18} />{label}</NavLink>)}
+        {nav.map(([to, label, Icon]) => <NavLink key={to} to={to} end={to === '/'} className={({ isActive }) => `flex items-center gap-3 rounded-xl px-3 py-2 text-sm transition ${isActive ? 'bg-emerald-500/15 font-medium text-emerald-700 dark:text-emerald-400' : 'text-slate-500 hover:bg-slate-100 dark:hover:bg-neutral-800'}`}><Icon size={18} />{label}</NavLink>)}
       </aside>
       <main className="mx-auto max-w-6xl p-4 pb-24 md:ml-60 md:p-8">
         <Routes><Route path="/" element={<Dashboard />} /><Route path="/transactions" element={<Transactions />} /><Route path="/budgets" element={<Budgets />} /><Route path="/goals" element={<Goals />} /><Route path="/settings" element={<Settings />} /></Routes>
       </main>
-      <nav className="fixed inset-x-0 bottom-0 flex justify-around border-t border-slate-200 bg-white py-2 dark:border-neutral-800 dark:bg-neutral-900 md:hidden">
+      <nav className="fixed inset-x-0 bottom-0 flex justify-around border-t py-2 glass md:hidden">
         {nav.map(([to, label, Icon]) => <NavLink key={to} to={to} end={to === '/'} aria-label={label} className={({ isActive }) => `p-2 ${isActive ? 'text-emerald-600' : 'text-slate-400'}`}><Icon size={22} /></NavLink>)}
       </nav>
     </HashRouter>
